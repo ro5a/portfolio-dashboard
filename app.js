@@ -1,13 +1,18 @@
 var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const logger = require('morgan');
+const dotenv =require('dotenv');
+const bodyparser=("body-parser");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+dotenv.config({path:'config.env'})
+var port = process.env.PORT || 8080;
+//log request
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,7 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var port = process.env.PORT || 3000;
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -52,6 +57,7 @@ app.get("/qualification", function(req, res){
 
   res.render("qualification"); 
 });
+
 app.listen(port, function(){
   console.log("server is running on port" + port);
 });
