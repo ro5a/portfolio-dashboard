@@ -41,22 +41,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.get("/index", function(req, res){
-
-  res.render("index"); 
-});
-app.get("/experience", function(req, res){
-
-  res.render("experience"); 
-});
-app.get("/skills", function(req, res){
-
-  res.render("skills"); 
-});
-app.get("/qualification", function(req, res){
-
-  res.render("qualification"); 
-});
+app.use('/',require('./routes/router'));
 
 app.listen(port, function(){
   console.log("server is running on port" + port);
