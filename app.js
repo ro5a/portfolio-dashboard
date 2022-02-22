@@ -18,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 var port = process.env.PORT || 3000;
 
 app.use('/', indexRouter);
@@ -35,9 +36,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.get("/dasboard", function(req, res){
+app.get("/index", function(req, res){
 
-  res.render("dashboard"); 
+  res.render("index"); 
 });
 app.get("/experience", function(req, res){
 
@@ -46,6 +47,10 @@ app.get("/experience", function(req, res){
 app.get("/skills", function(req, res){
 
   res.render("skills"); 
+});
+app.get("/qualification", function(req, res){
+
+  res.render("qualification"); 
 });
 app.listen(port, function(){
   console.log("server is running on port" + port);
