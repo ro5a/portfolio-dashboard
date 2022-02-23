@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv =require('dotenv');
 const bodyparser=("body-parser");
-
+const connectDB= require('./database/connection');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
