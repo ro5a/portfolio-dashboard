@@ -3,7 +3,7 @@ exports.homeRoutes=(req,res)=>{
     axios.get('http://localhost:3000/api/experiences')
     .then(function(response){
         console.log(response)
-        res.render("index",{experiences:"response.data"});
+        res.render("experience",{experiences:"response.data"});
     })
     .catch(err=>{
         res.send(err)
