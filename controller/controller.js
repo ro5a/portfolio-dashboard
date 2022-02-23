@@ -20,14 +20,32 @@ exper.save(exper)
 }
 //rettrive and return
 exports.find=(req,res)=>{
-    UserDB.find()
-    .then(exper=>{
-        exper.send(exper)
+    if(req.query.id){
+const id=req.query.id;
+UserDB.findById(id)
+.then(data=>{
+    if(!data){
+        res.status(404).send({messag:"not found experinces"})
+    }else{
+        res.send(data)
+    }
+})
+.catch(err=>{
+    res.status(500).send({
+        message:"error retriving"
     })
-    .catch(err=>{
-        res.status(500).send({message:err.message ||"Error occured while retriving"});
-    });
-     
+})
+    }else{
+        UserDB.find()
+        .then(exper=>{
+            exper.send(exper)
+        })
+        .catch(err=>{
+            res.status(500).send({message:err.message ||"Error occured while retriving"});
+        });
+         
+    }
+  
 }
 //update
 exports.update=(req,res)=>{

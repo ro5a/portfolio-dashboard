@@ -1,11 +1,12 @@
 <tbody id="myTable">
+ <% for(var i=0; i<experiences.length; i++){%>
     <tr>
-        <td>1</td>
-      <td>2020</td>
-      <td>Photoshop deasign</td>
+        <td><%= i+1 %> </td>
+      <td></td>
+      <td><%= experiences[i].name%></td>
       <td> <button class="btn btn-danger " data-toggle="modal" data-target="#my-modal"><a href="" style="color: #fff;">  Delete  </a></button> </td>
       <td>   <button class="btn btn-primary" data-toggle="modal" data-target="#my-modal1"><a href="update" style="color: #fff;"> Edit </a></button> </td>
     </tr>
     <tr>
-     
+   <% }%>
   </tbody>
