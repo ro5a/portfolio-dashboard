@@ -20,10 +20,36 @@ exper.save(exper)
 }
 //rettrive and return
 exports.find=(req,res)=>{
+    UserDB.find()
+    .then(exper=>{
+        exper.send(exper)
+    })
+    .catch(err=>{
+        res.status(500).send({message:err.message ||"Error occured while retriving"});
+    });
      
 }
 //update
 exports.update=(req,res)=>{
+    if(!req.body){
+        return res
+        .status(400)
+        .send({message:"data to update"})
+    }
+    const id=req.params.id; 
+    UserDB.findByIdAndUpdate(id,req.body,{useFindAndModify:false})
+    .then(data=>{
+        if(!data){
+            res.status(404).send({message:"can not update "})
+        }else{
+            res.send(data)
+        }
+    })
+    .catch(err=>{
+        res.status(500).send({
+            message:"error update information "
+        })
+    })
 
 }
 //delete

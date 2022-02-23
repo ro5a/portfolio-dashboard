@@ -27,8 +27,8 @@ route.get("/index", services.homeRoutes);
   route.get("/add-exper",services.add_exper)
   route.get("/update",services.update)
   //API
-  route.post('/api/users',controller.create);
-  route.get('/api/users',controller.find);
-  route.put('/api/users/:id',controller.update);
-  route.delete('/api/users/:id',controller.delete);
+  route.post('/api/experiences',controller.create);
+  route.get('/api/experiences',controller.find);
+  route.put('/api/experiences/:id',controller.update);
+  route.delete('/api/experiences/:id',controller.delete);
   module.exports=route;
