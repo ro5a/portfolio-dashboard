@@ -16,8 +16,8 @@ console.log('Failed to retrieve the Users List: ' + err);
 });
 // SHOW ADD USER FORM
 router.get('/add', function(req, res, next) {
-// render to views/user/add.ejs
-res.render('index/add', {
+
+res.render('/add', {
 title: 'Add New experience',
 name: ''
 })
@@ -46,7 +46,7 @@ errors.forEach(function(error) {
 error_msg += error.msg + '<br>'
 })
 req.flash('error', error_msg)
-res.render('index/add', {
+res.render('/add', {
 title: 'Add New User',
 name: req.body.name
 })
@@ -56,7 +56,7 @@ name: req.body.name
 router.get('/edit/(:id)', function(req, res, next) {
 userModel.findById(req.params.id, (err, doc) => {
 if (!err) {
-res.render("index/edit", {
+res.render("/edit", {
 title: "Update experience Details",
 data: doc
 });
@@ -95,8 +95,8 @@ req.flash('error', error_msg)
 * Using req.body.name 
 * because req.param('name') is deprecated
 */
-res.render('index/edit', {
-title: 'Edit user',
+res.render('/edit', {
+title: 'Edit experience',
 id: req.params.id,
 name: req.body.name
 })
