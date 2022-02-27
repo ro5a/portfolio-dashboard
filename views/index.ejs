@@ -3,7 +3,24 @@
 
 <head>
 
-  <%- include('partials/head') %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Dashboard</title>
+    
+    <!-- Custom fonts for this template-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <link href="/stylesheets/sb-admin-2.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    
+    <!-- Custom styles for this template-->
+    <link href="/stylesheets/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -208,11 +225,64 @@
 
                 </nav>
                 <div class="container-fluid">
-
+                  <a href="/" class="btn btn-primary ml-3">Home</a> </div>
+                  <!--   <% if (messages.error) { %>
+                  <p style="color:red"><%- messages.error %></p>
+                  <% } %> -->
+                  <% if (messages.success) { %>
+                  <p class="alert alert-success mt-4">
+                  <%- messages.success %>
+                  </p>
+                  <% } %>
                     <!-- Page Heading -->
                     <h1 class="h3 mb-1 text-gray-800">Job board</h1>
-                  
+                    <table id="myTable" class="table">
+                      <thead>
+                          <tr>
+                              <th>ID</th>
+                              <th>the job</th>
+                              <th>The Year</th>
+                              <th>action</th>
+                              <th>status</th>
 
+                          </tr>
+                      </thead>
+                      
+                      <tbody>
+                        
+                        <% if(data.length){
+                        for(var i = 0; i< data.length; i++) {%>
+                        <tr>
+                        <th scope="row">
+                        <%= (i+1) %>
+                        </th>
+                        <td>
+                        <%= data[i].name%>
+                        </td>
+                        <td>
+                        
+                        </td>
+                        <td> <a class="btn btn-success edit" href="../edit/<%= data[i]._id%>">Edit</a>
+                        <a class="btn btn-danger delete" href="../delte/<%= data[i]._id%>">delete</a>
+                        </td>
+                        </tr>
+                        <% }
+                        }else{ %>
+                        <tr>
+                        <td colspan="3">No user</td>
+                        </tr>
+                        <% } %>
+                        
+                    </tbody>
+                      </tbody>
+                  </table>
+                  <a href="add-exper" style="color: #fff;">
+                      Add
+                  </a>
+          </div>
+
+                  
+<div></div>
             
             <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
