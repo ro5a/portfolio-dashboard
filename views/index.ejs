@@ -224,8 +224,7 @@
                     </ul>
 
                 </nav>
-                <div class="container-fluid">
-                  <a href="/" class="btn btn-primary ml-3">Home</a> </div>
+              
                   <!--   <% if (messages.error) { %>
                   <p style="color:red"><%- messages.error %></p>
                   <% } %> -->
@@ -262,8 +261,8 @@
                         <td>
                         
                         </td>
-                        <td> <a class="btn btn-success edit" href="../edit/<%= data[i]._id%>">Edit</a>
-                        <a class="btn btn-danger delete" href="../delete/<%= data[i]._id%>">delete</a>
+                        <td> <a class="btn btn-success edit" href="./edit/<%= data[i]._id%>">Edit</a>
+                        <a class="btn btn-danger delete" href="./delete/<%= data[i]._id%>">delete</a>
                         </td>
                         </tr>
                         <% }
@@ -276,7 +275,7 @@
                     </tbody>
                       </tbody>
                   </table>
-                  <a href="add-exper" style="color: #fff;">
+                  <a href="./add" style="color: #fff;">
                       Add
                   </a>
           </div>
