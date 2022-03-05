@@ -20,7 +20,7 @@ extended: false
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // Connected DB
-mongoose.connect('mongodb://localhost:27017/dashboard', (err) => {
+mongoose.connect('mongodb+srv://admin:123roro123@cluster0.hixpu.mongodb.net/dashboard?retryWrites=true&w=majority', (err) => {
     if (err) console.log(err);
     else console.log("DB Conected...");
 });
