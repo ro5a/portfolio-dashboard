@@ -1,4 +1,5 @@
 var express = require('express');
+const { Result } = require('express-validator');
 var router = express.Router();
 
 var Emodel = require('../models/Emodel');
@@ -78,18 +79,28 @@ router.post('/update/:id', function (req, res, next) {
     // req.assert('name', 'Name is required').notEmpty() //Validate nam
     // var errors = req.validationErrors()
     // if (!errors) {
+        console.log(req.body)
         var experience = {
-            name: req.sanitize('name').escape().trim(),
-        }
-        Emodel.findByIdAndUpdate(req.body.id, {
             name: req.body.name
+        }
+        // var id=req.body.id;
+        // experience.updateOne({"_id":id},{
+        //     $set:experience
+        // },experience,(err,result)=>{
+        //     console.log(err)
+        // }
+        // )
+        // req.flash('success', 'User has been updated successfully!');
+        // res.redirect("/index");
+        Emodel.updateOne({_id: req.body.id}, {
+            $set:experience
         }, function (err, data) {
             if (err) {
                 req.flash('error', 'Something Goes to Wrong!');
-                res.render('index');
+                res.render('/index');
             } else {
                 req.flash('success', 'User has been updated successfully!');
-                res.redirect('/index');
+                res.redirect('/');
             }
         });
     // } else { //Display errors to user
@@ -97,23 +108,24 @@ router.post('/update/:id', function (req, res, next) {
     //     errors.forEach(function (error) {
     //         error_msg += error.msg + '<br>'
     //     })
-        req.flash('error', error_msg)
+        // req.flash('error', error_msg)
         /**
         * Using req.body.name 
         * because req.param('name') is deprecated
         */
-        res.render('/edit', {
-            title: 'Edit experience',
-            id: req.params.id,
-            name: req.body.name
-        })
+        // res.render('/edit', {
+        //     title: 'Edit experience',
+        //     id: req.params.id,
+        //     name: req.body.name
+        // })
     
 })
-// DELETE USER
+// DELETE Experince
 router.get('/delete/(:id)', function (req, res, next) {
     Emodel.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            res.redirect('/index');
+            req.flash('danger', 'User has been deleted successfully!');
+            res.redirect('/');
         } else {
             console.log('Failed to Delete user Details: ' + err);
         }
