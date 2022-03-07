@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
                 data: docs 
             });
         } else {
-            console.log('Failed to retrieve the Users List: ' + err);
+            console.log('Failed to retrieve the experiences List: ' + err);
         }
     });
 });
@@ -21,7 +21,8 @@ router.get('/add', function (req, res, next) {
 
     res.render('add', {
         title: 'Add New experience',
-        name: ''
+        name: '',
+        place: ''
     })
 })
 // ADD NEW USER POST ACTION
@@ -32,18 +33,20 @@ router.post('/add', function (req, res, next) {
     //   var errors = req.validationErrors()
     // if (!errors) { //No errors were found.  Passed Validation!
         var userDetails = new Emodel({
-            name: req.body.name
+            name: req.body.name,
+            place: req.body.place
         });
         userDetails.save((err, doc) => {
             if (!err) {
-                req.flash('success', 'User added successfully!');
+                req.flash('success', 'experience added successfully!');
                 res.redirect('/');
             }
     
             else
                 res.render('add', {
-                    title: 'Add New User',
-                    name: user.name
+                    title: 'Add New Experience',
+                    name: user.name,
+                    place: user.place
                 })
         });
      
@@ -81,7 +84,8 @@ router.post('/update/:id', function (req, res, next) {
     // if (!errors) {
         console.log(req.body)
         var experience = {
-            name: req.body.name
+            name: req.body.name,
+            place: req.body.place
         }
         // var id=req.body.id;
         // experience.updateOne({"_id":id},{
@@ -99,7 +103,7 @@ router.post('/update/:id', function (req, res, next) {
                 req.flash('error', 'Something Goes to Wrong!');
                 res.render('/index');
             } else {
-                req.flash('success', 'User has been updated successfully!');
+                req.flash('success', 'experience has been updated successfully!');
                 res.redirect('/');
             }
         });
@@ -124,10 +128,10 @@ router.post('/update/:id', function (req, res, next) {
 router.get('/delete/(:id)', function (req, res, next) {
     Emodel.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err) {
-            req.flash('danger', 'User has been deleted successfully!');
+            req.flash('danger', 'experience has been deleted successfully!');
             res.redirect('/');
         } else {
-            console.log('Failed to Delete user Details: ' + err);
+            console.log('Failed to Delete experience Details: ' + err);
         }
     });
 })

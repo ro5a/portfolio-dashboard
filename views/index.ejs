@@ -230,13 +230,13 @@
                     </p>
                     <% } %>
                         <!-- Page Heading -->
-                        <h1 class="h3 mb-1 text-gray-800">Job board</h1>
+                        <h1 class="h3 mb-1 text-white-800">Experience</h1>
                         <table id="myTable" class="table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>the job</th>
-                                    <th>The Year</th>
+                                    <th>The place</th>
                                     <th>action</th>
                                     <th>status</th>
 
@@ -254,7 +254,7 @@
                                             <%= data[i].name%>
                                         </td>
                                         <td>
-
+                                            <%= data[i].place %> 
                                         </td>
                                         <td> <a class="btn btn-success edit" href="./edit/<%= data[i]._id%>">Edit</a>
                                             <a class="btn btn-danger delete"
